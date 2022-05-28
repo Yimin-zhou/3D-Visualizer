@@ -5,6 +5,7 @@ import math
 import numpy as np
 
 
+# TODO explain how those matrices work
 def translate_matrix(pos):
     tx, ty, tz = pos
     return np.array([

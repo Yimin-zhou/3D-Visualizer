@@ -1,8 +1,8 @@
 """
 3d objects in homogeneous coordinates, with transform functions, left hand
 """
-import pygame as pg
-from matrix import *
+import numpy as np
+import matrix as matrix
 
 
 class Obejct3D:
@@ -22,19 +22,19 @@ class Obejct3D:
         self.set_init_transform(init_position, init_rotation, init_scale)
 
     def translate_object(self, pos):
-        self.vertices = self.vertices @ translate_matrix(pos)
+        self.vertices = self.vertices @ matrix.translate_matrix(pos)
 
     def scale_object(self, scal_mul):
-        self.vertices = self.vertices @ scale_matrix(scal_mul)
+        self.vertices = self.vertices @ matrix.scale_matrix(scal_mul)
 
     def rotate_x_object(self, angle):
-        self.vertices = self.vertices @ rotate_x_matrix(angle)
+        self.vertices = self.vertices @ matrix.rotate_x_matrix(angle)
 
     def rotate_y_object(self, angle):
-        self.vertices = self.vertices @ rotate_y_matrix(angle)
+        self.vertices = self.vertices @ matrix.rotate_y_matrix(angle)
 
     def rotate_z_object(self, angle):
-        self.vertices = self.vertices @ rotate_z_matrix(angle)
+        self.vertices = self.vertices @ matrix.rotate_z_matrix(angle)
 
     def set_init_position(self, init_position):
         self.translate_object(init_position)
@@ -68,12 +68,12 @@ class Cube(Obejct3D):
             [1, 0, 1, 1],
         ])
         self.faces = np.array([
-            [0, 1, 2, 3],
-            [4, 5, 6, 7],
-            [1, 2, 6, 5],
-            [0, 3, 7, 4],
-            [1, 5, 0, 4],
-            [2, 6, 7, 3],
+            [4, 7, 6, 5],
+            [5, 4, 0, 1],
+            [4, 7, 3, 0],
+            [1, 5, 6, 2],
+            [3, 7, 6, 2],
+            [1, 2, 3, 0],
         ])
 
         # set initial transform

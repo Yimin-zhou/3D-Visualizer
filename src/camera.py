@@ -1,24 +1,41 @@
 """
 camera and space transform
 """
-from matrix import *
+import math
+import numpy as np
+import matrix
 
 
 class Camera:
-    def __init__(self, render, position):
+    def __init__(self, render, position, rotation):
         self.render = render
         self.position = np.array([*position, 1.0])
+        self.set_init_rotation(rotation)
 
-        # object space
+        # object space axis
         self.forward = np.array([0, 0, 1, 1])
         self.up = np.array([0, 1, 0, 1])
         self.right = np.array([1, 0, 0, 1])
-
         self.h_fov = math.pi / 3
         self.v_fov = self.h_fov * (render.height / render.width)
-        self.near_plane = 0.1
+        self.near_plane = 0.001
         self.far_plane = 100
 
+    def rotate_x_object(self, angle):
+        self.position = self.position @ matrix.rotate_x_matrix(angle)
+
+    def rotate_y_object(self, angle):
+        self.position = self.position @ matrix.rotate_y_matrix(angle)
+
+    def rotate_z_object(self, angle):
+        self.position = self.position @ matrix.rotate_z_matrix(angle)
+
+    def set_init_rotation(self, init_rotation):
+        self.rotate_x_object(init_rotation[0])
+        self.rotate_y_object(init_rotation[1])
+        self.rotate_z_object(init_rotation[2])
+
+    # TODO explain how those matrices work
     def camera_translate_matrix(self):
         """
         M
@@ -87,7 +104,7 @@ class Camera:
         """
         transformed_vertices = self.camera_projection(vertices)
         transformed_vertices /= transformed_vertices[:, -1].reshape(-1, 1)  # use w to normalize
-        transformed_vertices[(transformed_vertices > 1) | (transformed_vertices < -1)] = 0
+        transformed_vertices[(transformed_vertices > 2) | (transformed_vertices < -2)] = 0
         return transformed_vertices
 
     def ndc_to_screen_matrix(self, vertices):
