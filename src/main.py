@@ -11,8 +11,7 @@ def create_camera(re):
 def create_3dobject(re):
     return object.Cube(re, [0.8, 0.4, 0.2], [0, 30 * math.pi / 180, 0], 1)
 
-
-if __name__ == '__main__':
+def main():
     # init render
     visualizer_render = render.VisualizerRender()
 
@@ -24,3 +23,7 @@ if __name__ == '__main__':
 
     # continuing render the frames
     visualizer_render.run(cam, object3d)
+
+
+if __name__ == '__main__':
+    main()

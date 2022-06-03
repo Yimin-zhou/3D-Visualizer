@@ -50,7 +50,7 @@ class VisualizerRender:
             control.camera_control(cam, 0.02, 0.002)
 
             # move object
-            ob.pivot = -ob.object_x_axis * 0.01 + ob.pivot
+            ob.pivot = ob.object_y_axis * (0.01 * np.sin(pg.time.get_ticks() * 0.001)) + ob.pivot
             ob.set_vertices(ob.pivot)
 
             self.draw(cam, ob)
