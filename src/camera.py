@@ -21,19 +21,19 @@ class Camera:
         self.near_plane = 0.001
         self.far_plane = 100
 
-    def rotate_x_object(self, angle):
+    def rotate_x_camera(self, angle):
         self.position = self.position @ matrix.rotate_x_matrix(angle)
 
-    def rotate_y_object(self, angle):
+    def rotate_y_camera(self, angle):
         self.position = self.position @ matrix.rotate_y_matrix(angle)
 
-    def rotate_z_object(self, angle):
+    def rotate_z_camera(self, angle):
         self.position = self.position @ matrix.rotate_z_matrix(angle)
 
     def set_init_rotation(self, init_rotation):
-        self.rotate_x_object(init_rotation[0])
-        self.rotate_y_object(init_rotation[1])
-        self.rotate_z_object(init_rotation[2])
+        self.rotate_x_camera(init_rotation[0])
+        self.rotate_y_camera(init_rotation[1])
+        self.rotate_z_camera(init_rotation[2])
 
     # TODO explain how those matrices work
     def camera_translate_matrix(self):

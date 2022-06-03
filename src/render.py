@@ -6,6 +6,10 @@ import pygame as pg
 import control
 
 
+# def object_movement(object3d):
+#
+
+
 # TODO explain which spaces
 def object_to_screen(cam, object3d):
     screen_vertices = cam.camera_to_ndc(object3d.vertices)
@@ -43,7 +47,11 @@ class VisualizerRender:
         """
         while True:
             # camera control
-            cam.position = control.camera_control(cam, 0.02, 0.002)
+            control.camera_control(cam, 0.02, 0.002)
+
+            # move object
+            ob.pivot = -ob.object_x_axis * 0.01 + ob.pivot
+            ob.set_vertices(ob.pivot)
 
             self.draw(cam, ob)
 

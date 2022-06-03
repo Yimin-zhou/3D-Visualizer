@@ -9,7 +9,7 @@ def create_camera(re):
 
 
 def create_3dobject(re):
-    return object.Cube(re, [0.2, 0.4, 0.2], [0, 30 * math.pi / 180, 0], 1)
+    return object.Cube(re, [0.8, 0.4, 0.2], [0, 30 * math.pi / 180, 0], 1)
 
 
 if __name__ == '__main__':

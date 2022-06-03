@@ -7,24 +7,19 @@ import matrix
 
 def camera_control(cam, moving_speed, rotation_speed):
     key = pg.key.get_pressed()
-    cam_position = cam.position
-    new_position = cam_position
-    right_vector = cam.right
-    forward_vector = cam.forward
-    up_vector = cam.up
 
     if key[pg.K_a]:
-        new_position = cam_position - right_vector * moving_speed
+        cam.position = cam.position - cam.right * moving_speed
     if key[pg.K_d]:
-        new_position = cam_position + right_vector * moving_speed
+        cam.position = cam.position + cam.right * moving_speed
     if key[pg.K_w]:
-        new_position = cam_position + forward_vector * moving_speed
+        cam.position = cam.position + cam.forward * moving_speed
     if key[pg.K_s]:
-        new_position = cam_position - forward_vector * moving_speed
+        cam.position = cam.position - cam.forward * moving_speed
     if key[pg.K_e]:
-        new_position = cam_position + up_vector * moving_speed
+        cam.position = cam.position + cam.up * moving_speed
     if key[pg.K_q]:
-        new_position = cam_position - up_vector * moving_speed
+        cam.position = cam.position - cam.up * moving_speed
 
     if key[pg.K_LEFT]:
         cam.forward, cam.right, cam.up = camera_yaw(cam, -rotation_speed)
@@ -34,8 +29,6 @@ def camera_control(cam, moving_speed, rotation_speed):
         cam.forward, cam.right, cam.up = camera_pitch(cam, -rotation_speed)
     if key[pg.K_DOWN]:
         cam.forward, cam.right, cam.up = camera_pitch(cam, rotation_speed)
-
-    return new_position
 
 
 def camera_yaw(cam, angle):
