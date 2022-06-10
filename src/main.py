@@ -11,6 +11,7 @@ def create_camera(re):
 def create_3dobject(re):
     return object.Cube(re, [0.8, 0.4, 0.2], [0, 30 * math.pi / 180, 0], 1)
 
+
 def main():
     # init render
     visualizer_render = render.VisualizerRender()
